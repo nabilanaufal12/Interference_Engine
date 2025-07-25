@@ -1,0 +1,157 @@
+body{
+    padding : 0;
+    margin : 0;
+    font-family: Ubuntu;
+
+}
+
+.main{
+    width: 100%;
+    display : flex;
+    justify-content: center;
+    align-items : center;
+}
+
+.navheader{
+    padding : .2rem .5rem;
+    display : flex;
+    align-items : center;
+    background-color: #0094FF;
+}
+
+.navheader img{
+    width : 5vw;
+}
+
+.nama-tim {
+    font-size : 2.5vw;
+    font-weight : bold;
+    color : #FFE500;
+    margin : 0 .5rem;
+}
+
+.nama-univ{
+    font-size : 2vw;
+    color : white;
+    font-weight : bold;
+}
+
+.main-container{
+    padding : 2rem 5vw;
+    display : grid;
+    grid-template-columns : 60% 40%;
+    column-gap: 2rem;
+    width: 80vw;
+}
+
+.camera-area{
+    border: black solid 1px;
+    border-radius : .5rem;
+}
+
+.area1{
+    display : inline-block;
+    justify-content: center;
+    align-items : center;
+}
+
+.area1 h2{
+    text-align: center;
+}
+
+.camera-layout{
+    align-items : center;
+    justify-content: center;
+
+}
+
+.maps{
+    align-items : center;
+    justify-content: center;
+}
+
+.cameras {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Baris kedua memiliki tiga kolom */
+    align-items : center;
+    justify-content: center;
+}
+
+.cameras video{
+    width : 100%;
+}
+
+.info-area{
+    background-color : rgb(242, 242, 242);
+    padding : 0 1rem;
+    border: black solid 1px;
+    border-radius : .5rem;
+}
+
+.lintasan-area{
+    background-color : rgb(242, 242, 242);
+    padding : 0 1rem;
+    border: black solid 1px;
+    border-radius : .5rem;
+    margin : 1rem 0;
+}
+
+.position-area{
+    background-color : rgb(242, 242, 242);
+    padding : 0 1rem;
+    border: black solid 1px;
+    border-radius : .5rem;
+    margin : 1rem 0;
+}
+
+.capture-area{
+    background-color : rgb(242, 242, 242);
+    padding : 0 1rem;
+    border: black solid 1px;
+    border-radius : .5rem;
+}
+
+.capture-area h2{
+    text-align: start;
+}
+
+.capture-result{
+    display : grid;
+    width: 95%;
+    grid-template-columns : 50% 50%;
+    row-gap : 1rem;
+    column-gap: 1rem;
+    justify-content:start;
+    align-items: start;
+    margin-bottom : 2rem;
+    max-height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.capture-img{
+    width: 100%;
+}
+
+.info-area h2{
+    margin-bottom: 0;
+    text-align: center;
+}
+.mark{
+    font-size: 4rem;
+    margin : 0;
+    text-align : center;
+}
+.logo-robotik{
+    width : 100%;
+    margin : 1rem 0;
+    border-radius : .5rem;
+}
+.logo{
+    display : grid;
+    grid-template-columns : 50% 50%;
+    margin : 1rem 0;
+}
+.logo img{
+    width : 100%;
+}

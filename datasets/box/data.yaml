@@ -1,0 +1,13 @@
+train: ../datasets/box/train/images
+val: ../datasets/box/valid/images
+test: ../datasets/box/test/images
+
+nc: 4
+names: ['green_buoy', 'red_buoy','green_box', 'blue_box']
+
+roboflow:
+  workspace: test-s6hlv
+  project: boxes-utpz4
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/test-s6hlv/boxes-utpz4/dataset/1

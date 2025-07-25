@@ -1,0 +1,13 @@
+train: ../datasets/train/images
+val: ../datasets/valid/images
+test: ../datasets/test/images
+
+nc: 2
+names: ['green_buoy', 'red_buoy']
+
+roboflow:
+  workspace: amvuijuara-gmail-com
+  project: buoy_detection_2021
+  version: 6
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/amvuijuara-gmail-com/buoy_detection_2021/dataset/6

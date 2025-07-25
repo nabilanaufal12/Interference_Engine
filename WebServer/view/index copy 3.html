@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <script src="js/leaflet.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <nav class="navheader">
+        <img src="/images/logo_umrah.png" alt="">
+        <span class="nama-tim">Goerindam Cybersea</span>
+        <span class="nama-univ">- Universitas Maritim Raja Ali Haji</span>
+    </nav>
+    <div class="main">
+        <div class="main-container">
+            <div class="area1">
+                <div class="camera-area">
+                    <H2>TRAJECTORY</H2>
+                    <div class="camera-layout">
+                        <div class="map" id="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.260577239332!2d104.4425442!3d0.9580391000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d9718e92c17af1%3A0x41e9ee3f93ed6235!2sFakultas%20Teknik%20UMRAH!5e0!3m2!1sid!2sid!4v1722961384819!5m2!1sid!2sid" style="border:0; width : 99%; height : 40vh;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                        </div>
+                        <div class="cameras">
+                            <img src="http://localhost:5000/cam1" alt="Stream 1" style="width : 100%; object-fit : fill;">
+                            <img src="http://localhost:5000/cam2" alt="Stream 1" style="width : 100%; object-fit : fill;">
+                            <img src="http://localhost:5000/cam3" alt="Stream 1" style="width : 100%; object-fit : fill;">
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="capture-area">
+                    <H2>Hasil Capture</H2>
+                    <hr>
+                    <div class="capture-result" id="capture-result">
+                                           </div>
+                </div>
+            </div>
+            <div class="area2">
+                <div class="info-area">
+                    <H2>VOYAGE INFORMATION</H2>
+                    <hr>
+                    <dir>
+                        <table>
+                            <tr>
+                                <td>HDG</td>
+                                <td>:</td>
+                                <td id="hdg">249.0°</td>
+                            </tr>
+                            <tr>
+                                <td>SOG</td>
+                                <td>:</td>
+                                <td id="sog">8.7 kn || 13.4 km/j</td>
+                            </tr>
+                            <tr>
+                                <td>COG</td>
+                                <td>:</td>
+                                <td id="cog">251.6°</td>
+                            </tr>
+                            <tr>
+                                <td>DAY</td>
+                                <td>:</td>
+                                <td id="day">SUN</td>
+                            </tr>
+                            <tr>
+                                <td>DATE</td>
+                                <td>:</td>
+                                <td id="date">24/07/0-2024</td>
+                            </tr>
+                            <tr>
+                                <td>GPS</td>
+                                <td>:</td>
+                                <td id="gps">S 3.56734 E 104.67235</td>
+                            </tr>
+                        </table>
+                    </dir>
+                </div>
+                <div class="position-area">
+                    <H2>POSITION : <span  id="position">FLOATING BALL</span></H2>
+                    <hr>
+                    SCORE : <span  id="progress">FLOATING BALL</span>
+                    <br><br>
+                </div>
+                <div class="lintasan-area">
+                    <H2>LINTASAN :</H2>
+                    <h1 class="mark" id="mark">A</h1>
+                    <br><br>
+                </div>
+                <img class="logo-robotik" src="images/logo_robotika.png" alt="">
+                <div class="logo">
+                    <img class="" src="images/puspresnas.png" alt="">
+                    <img class="" src="images/kki.png" alt="">
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</body>
+<script>
+let hdg = document.getElementById("hdg");
+let sog = document.getElementById("sog");
+let cog = document.getElementById("cog");
+let date = document.getElementById("date");
+let gps = document.getElementById("gps");
+let mark = document.getElementById("mark");
+let progress = document.getElementById("progress");
+let position = document.getElementById("position");
+let capture = document.getElementById("capture-result");
+let mapcon = document.getElementsByClassName("leaflet-map-pane")[0];
+let map = null;
+
+function renderMap(){
+    //L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    //    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    //}).addTo(map);
+    
+    //L.marker([-7.2758471,112.7937557]).addTo(map)
+    //    .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+    //    .openPopup();
+
+    //L.marker([-7.2759471,112.7937557]).addTo(map)
+    //    .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+    //    .openPopup();
+}
+
+let cur = 0;
+let posMark = null;
+
+function fetchData(){
+    $.ajax({
+        url: "http://localhost:5000/data",
+        method : "GET",
+    }).done(function(e) {
+        console.log(e);
+        if(e!=null){
+            //if(posMark!=null)L.removeLayer(posMark);
+            hdg.innerHTML = e.hdg + "°";
+            sog.innerHTML = e.sog + " kn || " + e.sog*1.8 + " Km/h ";
+            cog.innerHTML = e.cog + "°";
+            day.innerHTML = e.day;
+            date.innerHTML = e.date;
+            gps.innerHTML = e.gps.latDir + " " + e.gps.lat + " " + e.gps.lonDir + " " + e.gps.long;
+            mark.innerHTML = e.lintasan;
+            position.innerHTML = e.position;
+            progress.innerHTML = parseFloat(e.progress).toFixed(2);
+            if(posMark!=null)map.removeLayer(posMark);
+
+            let ver = e.coor ;
+            if(map==null){
+                map = L.map('map').setView([ver[0][ver.length/2],ver[1][ver.length/2]], 19);
+                L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.{ext}', {
+                    minZoom: 0,
+                    maxZoom: 19,
+                    attribution: '&copy; CNES, Distribution Airbus DS, © Airbus DS, © PlanetObserver (Contains Copernicus Data) | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    ext: 'jpg'
+                }).addTo(map);
+            }
+
+
+            posMark = L.marker([ver[0][cur], ver[1][cur]]).addTo(map).openPopup();
+            
+            //L.marker([e.gps.lat, e.gps.long]).addTo(map).openPopup();
+            
+            let setPoints = [];
+            
+            cur = (cur+1)%ver[0].length;
+            for(let i = 0 ; i < ver[0].length ; i++){
+                setPoints.push([ver[0][i], ver[1][i]]);
+                    //L.marker([ver[0][i], ver[1][i]]).addTo(map)
+                    //.bindPopup('A pretty CSS popup.<br> Easily customizable.')
+                    //.openPopup();
+            }
+            var polyline = L.polyline(setPoints, {color: 'blue'}).addTo(map);
+
+            // Fit peta sesuai dengan bounding box dari polyline
+            map.fitBounds(polyline.getBounds());
+        }
+    });
+}
+
+let idx = 0;
+
+function getImageLen(){
+    $.ajax({
+        url: "http://localhost:5000/get_image_len",
+        method : "GET",
+    }).done((e)=>{
+        console.log(e);
+        if(idx == e.len) return;
+        for(let i = idx+1 ;i <= e.len;i++){
+            let img = document.createElement("img");
+            img.src = "http://localhost:5000/get_image/" + i;
+            img.classList.add("capture-img");
+            console.log("Lol");
+            console.log(img);
+            capture.append(img);
+        }
+        idx = e.len;
+        
+    });
+}
+
+setInterval(fetchData, 1000);
+setInterval(renderMap, 1000);
+setInterval(getImageLen, 1000);
+</script>
+</html>

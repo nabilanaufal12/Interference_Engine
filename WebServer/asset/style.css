@@ -1,0 +1,9 @@
+body{
+    padding : 0;
+    margin : 0;
+}
+
+.video-stream{
+    width : 40vw;
+    height : 40vh;
+}
