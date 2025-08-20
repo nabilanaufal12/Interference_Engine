@@ -1,4 +1,3 @@
-
 import math
 import json
 import time
@@ -10,39 +9,32 @@ from utils.folder import save_to_excel
 
 class myMqtt:
     def __init__(self, socket) -> None:
-<<<<<<< HEAD
-        self.data = []
-        self.counter = 1
-        self.lintasan = 'A'
-        self.lats = [-7.332006, -7.331980333, -7.331957333, -7.331877667, -7.331895333, -7.3318965, -7.331901333, -7.331905667, -7.331899667, -7.331931, -7.331958333, -7.331994667, -7.332012, -7.332006667, -7.332042167, -7.332045, -7.332005333, -7.332063333]
-=======
         self.datas = []
         self.counter = 0
         self.lintasan = 'B'
         self.date = datetime.today().strftime('%d/%m/%Y')
-        self.days = [ "Mon", "Thus", "Wed", "Thurs", "Fri", "Sat","Sun"]
+        self.days = [ "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat","Sun"]
         self.day = self.days[datetime.today().weekday()%len(self.days)]
         self.lats = [
-                0.868404,
-                0.868457667,
-                0.868474667,
-                0.868554333,
-                0.868582,
-                0.868603833,
-                0.868637833,
-                0.868687333,
-                0.8686555,
-                0.868617333,
-                0.868567,
-                0.868578,
-                0.868485167,
-                0.868523,
-                0.868493,
-                0.868466167,
-                0.868396833,
-                0.868327
-            ]
->>>>>>> e0d5984b5cffd10f52a227f1ae20f3c9d175a9e7
+            0.868404,
+            0.868457667,
+            0.868474667,
+            0.868554333,
+            0.868582,
+            0.868603833,
+            0.868637833,
+            0.868687333,
+            0.8686555,
+            0.868617333,
+            0.868567,
+            0.868578,
+            0.868485167,
+            0.868523,
+            0.868493,
+            0.868466167,
+            0.868396833,
+            0.868327
+        ]
         
         self.actSpeed = 1700
         self.Lons = []
@@ -136,7 +128,7 @@ class myMqtt:
                 "radius" : self.radius,
                 "kd" : self.Kd,
                 "ki" : self.Ki,
-		        #"counter":self.counter,
+                #"counter":self.counter,
                 "motor" : self.motor,
                 "speed" : self.speed if self.counter < len(self.lats) else 1550
             }
@@ -178,9 +170,6 @@ class myMqtt:
         if self.distanceValid : self.distanceCounter += 1
         self.distanceCounter %= 6
 
-    
-        
-            
         if self.counter >= self.inverseCounter and not self.inversed:
             self.inv  = not self.inv
             self.inversed = True
@@ -217,7 +206,7 @@ class myMqtt:
             self.lats = dataPoint["lats"]
             self.lons = dataPoint["lons"]
             print("Loaded")
-  
+ 
 
     def on_log(self, mqttc, obj, level, string):
         print(string)
@@ -231,9 +220,3 @@ mymqtt = None
 def mqtt(socket):
     global thread, mymqtt
     mymqtt = myMqtt(socket)
-
-
-
-
-
-

@@ -255,3 +255,95 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+# ===================================================================
+# File dan Folder Umum
+# ===================================================================
+
+# File log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# File sistem operasi
+.DS_Store
+Thumbs.db
+
+# File editor dan IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ===================================================================
+# Python
+# ===================================================================
+
+# Byte-code atau file terkompilasi
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Folder virtual environment
+venv/
+env/
+.env
+.venv
+ENV/
+
+# Paket distribusi
+/dist/
+/build/
+*.egg-info/
+*.egg
+
+# ===================================================================
+# Node.js
+# ===================================================================
+
+# Folder dependensi
+node_modules/
+
+# File package-lock.json jika menggunakan npm dan ingin tim lain menginstall versi terbaru
+# package-lock.json
+
+# ===================================================================
+# Machine Learning / YOLO
+# ===================================================================
+
+# Folder hasil training dan eksperimen (seperti yang terlihat di proyek Anda)
+/runs/
+/exp/
+/exp4/
+/exp5/
+
+# Model yang sudah di-train (.pt adalah format PyTorch)
+# Model ini biasanya berukuran besar dan tidak disimpan di Git
+best.pt
+besto.pt
+last.pt
+*.weights
+
+# File dataset (seringkali berukuran sangat besar)
+# Jika dataset Anda kecil, Anda bisa hapus baris di bawah ini
+/datasets/
+
+# ===================================================================
+# File-file lain yang spesifik untuk proyek Anda
+# ===================================================================
+
+# File zip (arsip/backup)
+*.zip
+
+# File backup
+backup.txt
+
+# File yang terlihat seperti file sementara atau lokal
+# Jika file-file ini penting untuk proyek, hapus dari daftar ini
+reqip_test.py
+preview.webp
+LENGKAP_CODECHANDRA_Rev2.ino

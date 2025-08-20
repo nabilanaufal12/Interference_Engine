@@ -335,7 +335,7 @@ class VideoMonitorApp(tk.Tk):
         
     def updateLatLon(self):
         if self.mqtt is not None or True:
-            self.mqtt.Lats[self.clicked.get] = self.mqtt.lat
+            self.mqtt.Lats[self.clicked.get()] = self.mqtt.lat
             self.mqtt.Lons[self.clicked.get] = self.mqtt.lon
             with open("coor.json", "w+") as fil:
                 fil.write(json.dumps({
